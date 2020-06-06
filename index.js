@@ -13,7 +13,7 @@ var leftPressed = false;
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
-document.addEventListener("touchmove", mouseMoveHandler, false);
+document.addEventListener("touchmove", touchMoveHandler, false);
 
 function keyDownHandler(e) {
   e.preventDefault();
@@ -36,6 +36,13 @@ function keyUpHandler(e) {
 function mouseMoveHandler(e) {
   e.preventDefault();
   var relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddle.x = relativeX - paddle.width / 2;
+  }
+}
+function touchMoveHandler(e) {
+  e.preventDefault();
+  var relativeX = e.touches[0].clientX - canvas.offsetLeft;
   if (relativeX > 0 && relativeX < canvas.width) {
     paddle.x = relativeX - paddle.width / 2;
   }
