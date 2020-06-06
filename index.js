@@ -51,9 +51,7 @@ function touchMoveHandler(e) {
 function moveBall() {
   if (ball.y < ball.yMin) {
     ball.dy *= -1;
-  }
-
-  if (ball.y > paddle.y - ball.radius) {
+  } else if (ball.y > paddle.y - ball.radius) {
     if (
       ball.dy > 0 &&
       ball.x >= paddle.x &&
@@ -61,43 +59,41 @@ function moveBall() {
     ) {
       ball.dy *= -1;
     }
-  }
-
-  if (ball.x < ball.yMin || ball.x > ball.xMax) {
+  } else if (ball.x < ball.yMin || ball.x > ball.xMax) {
     ball.dx *= -1;
-  }
-
-  outerLoop: for (var c = 0; c <= bricksGroup.colCount; c++) {
-    for (var r = 0; r < bricksGroup.rowCount; r++) {
-      var brick = bricksGroup.bricks[c][r];
-      if (brick.destroyed) {
-        continue;
-      }
-
-      let collisionSide = collisionDetection(
-        {
-          x: ball.x,
-          y: ball.y,
-          r: ball.radius,
-        },
-        {
-          x: brick.x,
-          y: brick.y,
-          h: bricksGroup.height,
-          w: bricksGroup.width,
+  } else {
+    outerLoop: for (var c = 0; c <= bricksGroup.colCount; c++) {
+      for (var r = 0; r < bricksGroup.rowCount; r++) {
+        var brick = bricksGroup.bricks[c][r];
+        if (brick.destroyed) {
+          continue;
         }
-      );
 
-      if (collisionSide.x) {
-        ball.dx *= -1;
-      }
-      if (collisionSide.y) {
-        ball.dy *= -1;
-      }
-      if (collisionSide.x || collisionSide.y) {
-        score.value++;
-        brick.destroyed = true;
-        break outerLoop;
+        let collisionSide = collisionDetection(
+          {
+            x: ball.x,
+            y: ball.y,
+            r: ball.radius,
+          },
+          {
+            x: brick.x,
+            y: brick.y,
+            h: bricksGroup.height,
+            w: bricksGroup.width,
+          }
+        );
+
+        if (collisionSide.x) {
+          ball.dx *= -1;
+        }
+        if (collisionSide.y) {
+          ball.dy *= -1;
+        }
+        if (collisionSide.x || collisionSide.y) {
+          score.value++;
+          brick.destroyed = true;
+          break outerLoop;
+        }
       }
     }
   }
