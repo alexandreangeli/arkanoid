@@ -67,7 +67,7 @@ function moveBall() {
     ball.dx *= -1;
   }
 
-  for (var c = 0; c <= bricksGroup.colCount; c++) {
+  outerLoop: for (var c = 0; c <= bricksGroup.colCount; c++) {
     for (var r = 0; r < bricksGroup.rowCount; r++) {
       var brick = bricksGroup.bricks[c][r];
       if (brick.destroyed) {
@@ -97,6 +97,7 @@ function moveBall() {
       if (collisionSide.x || collisionSide.y) {
         score.value++;
         brick.destroyed = true;
+        break outerLoop;
       }
     }
   }
