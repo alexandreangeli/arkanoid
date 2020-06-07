@@ -7,7 +7,7 @@ class Paddle {
     this.y0 = canvas.height - this.height;
     this.x = this.x0;
     this.y = this.y0;
-    this.dx = 2;
+    this.dx = 7;
     this.xMax = canvas.width - this.width;
     this.yMax = canvas.height - this.height;
     this.xMin = 0;
