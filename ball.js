@@ -8,8 +8,8 @@ class Ball {
     this.x = this.x0;
     this.y = this.y0;
 
-    this.dx0 = 1;
-    this.dy0 = -1;
+    this.dx0 = 5;
+    this.dy0 = -5;
     this.dx = this.dx0;
     this.dy = this.dy0;
 

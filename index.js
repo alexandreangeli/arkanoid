@@ -128,9 +128,6 @@ function collisionDetection(circle, rect) {
 }
 
 function victory() {
-  clearInterval(drawInterval);
-  let teste = this.bricksGroup;
-  debugger;
   alert("YOU WIN, CONGRATULATIONS!");
   document.location.reload();
 }
@@ -146,7 +143,6 @@ function lostLife() {
 }
 
 function gameOver() {
-  clearInterval(drawInterval);
   alert("GAME OVER");
   document.location.reload();
 }
@@ -168,6 +164,7 @@ function draw() {
   if (ball.y > ball.yMax) {
     lostLife();
   }
+  requestAnimationFrame(draw);
 }
 
-var drawInterval = setInterval(draw, 5);
+draw();
