@@ -2,6 +2,8 @@ var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.7;
+canvas.style.width = canvas.width;
+canvas.style.height = canvas.height;
 
 var score = new Score();
 var paddle = new Paddle();
