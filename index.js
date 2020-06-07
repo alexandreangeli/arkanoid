@@ -158,13 +158,15 @@ function draw() {
 
   moveBall();
 
-  if (score.value == bricksGroup.rowCount * bricksGroup.colCount) {
-    victory();
-  }
   if (ball.y > ball.yMax) {
     lostLife();
   }
-  requestAnimationFrame(draw);
+
+  if (score.value == bricksGroup.rowCount * bricksGroup.colCount) {
+    victory();
+  } else {
+    requestAnimationFrame(draw);
+  }
 }
 
 draw();
