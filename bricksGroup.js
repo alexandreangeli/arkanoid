@@ -10,20 +10,23 @@ class BricksGroup {
     this.offSetTop = 50;
 
     this.bricks = [];
-    for (var c = 0; c <= this.colCount; c++) {
+    for (var c = 0; c < this.colCount; c++) {
       this.bricks[c] = [];
       for (var r = 0; r < this.rowCount; r++) {
-        let brickX = this.padding * c + this.width * (c - 1);
-        let brickY =
-          this.offSetTop + (this.padding * r + this.height * (r - 1));
+        let colNumber = c + 1;
+        let rowNumber = r + 1;
 
+        let brickX = this.padding * colNumber + this.width * (colNumber - 1);
+        let brickY =
+          this.offSetTop +
+          (this.padding * rowNumber + this.height * (rowNumber - 1));
         this.bricks[c][r] = new Brick(brickX, brickY, this.width, this.height);
       }
     }
   }
 
   draw() {
-    for (var c = 0; c <= bricksGroup.colCount; c++) {
+    for (var c = 0; c < bricksGroup.colCount; c++) {
       for (var r = 0; r < bricksGroup.rowCount; r++) {
         let brick = bricksGroup.bricks[c][r];
         if (brick.destroyed) {

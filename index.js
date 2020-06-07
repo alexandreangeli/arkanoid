@@ -62,7 +62,7 @@ function moveBall() {
   } else if (ball.x < ball.yMin || ball.x > ball.xMax) {
     ball.dx *= -1;
   } else {
-    outerLoop: for (var c = 0; c <= bricksGroup.colCount; c++) {
+    outerLoop: for (var c = 0; c < bricksGroup.colCount; c++) {
       for (var r = 0; r < bricksGroup.rowCount; r++) {
         var brick = bricksGroup.bricks[c][r];
         if (brick.destroyed) {
@@ -129,6 +129,8 @@ function collisionDetection(circle, rect) {
 
 function victory() {
   clearInterval(drawInterval);
+  let teste = this.bricksGroup;
+  debugger;
   alert("YOU WIN, CONGRATULATIONS!");
   document.location.reload();
 }
